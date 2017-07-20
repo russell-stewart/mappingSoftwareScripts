@@ -28,6 +28,7 @@ def mkDir(path , name):
     return(newDir)
 
 folders = os.listdir(srcDir)
+hisatResultsDir = mkDir(destDir , 'hisatResults')
 
 #find the trimmed fastq files and turn them into a vector of samples.
 #this uses the file heirarchy outputted by skewer.
@@ -41,13 +42,13 @@ for folder in folders:
         if not f.find('untrimmed') > 0 and f.find('.fastq.gz') > 0:
             samples[i].append(folder + '/' + f)
             tempName = f[:f.find('-trimmed')]
-    sampleDestDir.append(destDir + '/' + tempName)
+    sampleDestDir.append(mkDir(hisatResultsDir , tempName))
     i += 1
 
 #run HISAT for each sample
 j = 0
 for sample in samples:
-    command = "bsub -u %s -R \"rusage[mem=30000]\" '/Seibold/proj/Russell_playground/hiSatAligner/hisat/hisat -q -t -p %d --known-splicesite-infile %s -x %s -1 %s -2 %s -S %s'" % (email , runThreadN , gtfFile , hisatIndexNamePrefix , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , mkDir(destDir , 'hisatResults') + '/' + sample[0][:sample[0].find('trimmed')] + '_SAM_out.sam')
+    command = "bsub -u %s -R \"rusage[mem=30000]\" '/Seibold/proj/Russell_playground/hiSatAligner/hisat/hisat -q -t -p %d --known-splicesite-infile %s -x %s -1 %s -2 %s -S %s'" % (email , runThreadN , gtfFile , hisatIndexNamePrefix , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , sampleDestDir[j] + '/' + sample[0][:sample[0].find('trimmed')] + '_SAM_out.sam')
     print command + '\n'
     coreID = subprocess.check_output(command , shell=True)
     print coreID
