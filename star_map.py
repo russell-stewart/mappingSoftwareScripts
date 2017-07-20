@@ -47,7 +47,7 @@ for folder in folders:
 #run STAR for each sample
 j = 0
 for sample in samples:
-    command = "bsub -u %s -R \"rusage[mem=30000]\" '/Seibold/proj/Russell_playground/starAligner/STAR/source/STAR --runThreadN %d --genomeDir %s --readFilesIn %s %s --outFileNamePrefix %s --readFilesCommand zcat  --outSAMtype BAM Unsorted'" % (email , runThreadN , genomeDir , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , sampleDestDir[j])
+    command = "bsub -u %s -R \"rusage[mem=30000]\" '/Seibold/proj/Russell_playground/starAligner/STAR/source/STAR --runThreadN %d --genomeDir %s --readFilesIn %s %s --outFileNamePrefix %s --readFilesCommand zcat  --outSAMtype BAM SortedByCoordinate'" % (email , runThreadN , genomeDir , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , sampleDestDir[j])
     print command + '\n'
     coreID = subprocess.check_output(command , shell=True)
     print coreID
