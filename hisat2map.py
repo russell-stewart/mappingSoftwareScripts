@@ -42,7 +42,7 @@ for folder in folders:
 #run HISAT2 for each sample
 j = 0
 for sample in samples:
-    command = "bsub -u %s -R \"rusage[mem=30000]\" '%s/hisat2 -q -t -p %d -x %s -1 %s -2 %s -S %s'" % (email , pathToHisat2 , runThreadN , pathToHisat2 + '/' + hisatIndexNamePrefix , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , sampleDestDir[j] + '/' + sample[1][:sample[1].find('/')]  + '_SAM_out.sam')
+    command = "bsub -u %s -R \"rusage[mem=6000]\" '%s/hisat2 -q -t -p %d -x %s -1 %s -2 %s -S %s'" % (email , pathToHisat2 , runThreadN , pathToHisat2 + '/' + hisatIndexNamePrefix , srcDir + '/' + sample[0] , srcDir + '/' + sample[1] , sampleDestDir[j] + '/' + sample[1][:sample[1].find('/')]  + '_SAM_out.sam')
     print command + '\n'
     coreID = subprocess.check_output(command , shell=True)
     print coreID
