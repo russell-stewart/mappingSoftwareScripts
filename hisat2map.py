@@ -28,7 +28,7 @@ def mkDir(path , name):
 folders = os.listdir(srcDir)
 hisatResultsDir = mkDir(destDir , 'hisatResults')
 
-#find the trimmed fastq files and turn them into a vector of samples.
+#find the trimmed fastq files and turn them into a matrix of samples.
 #this uses the file heirarchy outputted by skewer.
 samples = []
 sampleDestDir = []
