@@ -7,6 +7,8 @@
 #hisat2_extract_snps_haplotypes_UCSC.py (part of HISAT2) BEFORE running this!
 #note: index files will appear in the directory in which you run this script!
 #preferably, run this inside of the hisat2 directory itself
+#hisat2 is available from:
+#https://github.com/infphilo/hisat2
 import os
 import subprocess
 
