@@ -6,7 +6,7 @@ Simple scripts for pipeline interaction with RNA-Seq mapping software
 - HISAT2: [https://github.com/infphilo/hisat2]
 - STAR: [https://github.com/alexdobin/STAR]
 
-##Files
+## Files, Sorted by Mapper
 
 ### HISAT
 - **hisat_map.py**: Batch runs HISAT mapping software for a set of trimmed fastq files outputted from skewer
